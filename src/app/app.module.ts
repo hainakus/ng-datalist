@@ -6,11 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DatalistComponent } from './datalist/datalist.component';
+import { BreakPipe } from './datalist/break.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DatalistComponent
+    DatalistComponent,
+    BreakPipe
   ],
   imports: [
     BrowserModule,

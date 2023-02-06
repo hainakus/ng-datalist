@@ -15,7 +15,7 @@ export class DatalistComponent implements AfterViewInit {
   constructor(private store: DataListStore, private renderer: Renderer2) { 
 
 
-    this.options = ['element', 'options', 'renderer'];
+    this.options = ['element', 'optionssssssssssssss (80000 GBPS)', 'провулок Аркадія Артюха, 10, Dobrovelychkivka, Kirovohradska oblast, Ukraine, 27000'];
 
    }
 

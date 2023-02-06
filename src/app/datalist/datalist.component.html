@@ -12,6 +12,6 @@
   <!-- Its important that you keep list attribute empty to hide the default dropdown icon and the browser's default datalist -->
 
   <datalist id="browsers" role="listbox">
-    <option *ngFor="let option of options" [value]="option">{{option}}</option>
+    <option *ngFor="let option of options" [value]="option" class="boldoption" [innerHTML]="option | break"></option>
   </datalist>
   </fieldset>
