@@ -1,16 +1,17 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { DataListStore } from './store';
 
 @Component({
   selector: 'app-datalist',
   templateUrl: './datalist.component.html',
-  styles: [] 
+  styleUrls: ['./datalist.component.scss'], 
 })
 export class DatalistComponent implements AfterViewInit {
   styles: any;
   options: any[] = [];
   @ViewChild('element') element!: ElementRef;
   @Output('selected') selected: EventEmitter<any> = new EventEmitter<any>();
+  @Input('placeholder') placeholder: string = 'Select...';
   constructor(private store: DataListStore, private renderer: Renderer2) { 
 
 
