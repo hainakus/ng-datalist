@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { DataListStore } from './store';
 
 @Component({
@@ -9,6 +10,7 @@ import { DataListStore } from './store';
 export class DatalistComponent implements AfterViewInit {
   styles: any;
   options: any[] = [];
+  render$: BehaviorSubject<boolean> =new BehaviorSubject(false);
   @ViewChild('element') element!: ElementRef;
   @Output('selected') selected: EventEmitter<any> = new EventEmitter<any>();
   @Input('placeholder') placeholder: string = 'Select...';
@@ -26,19 +28,20 @@ export class DatalistComponent implements AfterViewInit {
     sheet.innerHTML = this.styles.sheet
     this.renderer.appendChild(this.element.nativeElement, sheet);
     const input = document.querySelector('input') as HTMLInputElement;
-    const browsers = document.getElementById('browsers') as HTMLDataListElement;
+    const browsers = document.getElementById('browsers') as HTMLUListElement;
    
     
     if(!input || !browsers ) return;
-    const options = browsers.querySelectorAll('option') as any;
+    const options = browsers.querySelectorAll('li') as any;
     input.onfocus = () => {
+      this.render$.next(true);
       browsers.style.display = "block";
       input.style.borderRadius = "5px 5px 0 0";
     };
     for (let option of options) {
       option.onclick = () => {
-        input.value = option.value;
-        this.selected.emit(option.value); 
+        input.value = option.querySelector('span.name').innerText;
+        this.selected.emit(input.value); 
         browsers.style.display = "none";
         input.style.borderRadius = "5px";
       };
@@ -48,14 +51,15 @@ export class DatalistComponent implements AfterViewInit {
       currentFocus = -1;
       var text = input.value.toUpperCase();
       for (let option of options) {
-        if (option.value.toUpperCase().indexOf(text) > -1) {
-          option.style.display = "block";
+        if (option.innerHTML.toUpperCase().indexOf(text) > -1) {
+          option.style.display = "flex";
         } else {
           option.style.display = "none";
         }
       }
     };
     var currentFocus = -1;
+    this.render$.next(false);
     input.onkeydown = function (e) {
       console.log(options)
    

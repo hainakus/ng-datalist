@@ -6,12 +6,20 @@
     </legend>
     <label>Select Browser</label>
     <input  autocomplete="off" role="combobox" list="" id="input" name="browsers" placeholder="{{placeholder}}">
-    <span class="material-symbols-outlined">
+    <span class="material-symbols-outlined arrow">
         expand_more
     </span>
   <!-- Its important that you keep list attribute empty to hide the default dropdown icon and the browser's default datalist -->
 
-  <datalist id="browsers" role="listbox">
+  <datalist  role="listbox">
     <option *ngFor="let option of options" [value]="option" class="boldoption" [innerHTML]="option | break"></option>
   </datalist>
+  <div class="list-options" [hidden]="!(render$ | async)">
+    <ul id="browsers" >
+        <li *ngFor="let option of options"> 
+           <span class="name">{{option}}</span>
+           <span class="description">{{option}}</span> 
+        </li>
+    </ul>
+  </div>
   </fieldset>

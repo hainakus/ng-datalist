@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
 
-  fieldset span { 
+  fieldset .arrow { 
     position: relative;
     content: "e5cf";
     top: -35px;
@@ -9,8 +9,39 @@
     height: 20px;
     width: 20px;
 } 
-datalist .boldoption {
-    padding: 10px;
-    overflow-x: hidden;
-    overflow-wrap: break-word;
+
+ul {
+    padding-left: 0%;
+    li {
+      &:not([hidden]) {
+        padding-top: 10px;
+        display: flex;
+        flex-flow: column;
+        padding-bottom: 5px;
+        border-bottom: 1px solid lightgray;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      padding-left: 0rem;
+      span {
+        &.name {
+          margin-right: 0;
+          font-weight: bolder;
+        }
+        &.description {
+          text-align: left;
+          margin-left: 0;
+          color: gray;
+          font-weight: lighter;
+          font-size: smaller;
+        }
+      }
+    }
+  }
+
+ul {
+  list-style-type: none;
+  overflow-y: auto;
+  max-height: 200px;
 }
