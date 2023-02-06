@@ -1,0 +1,14 @@
+
+<div #element></div>
+<fieldset>
+    <legend>
+      Datalist Form
+    </legend>
+    <label>Select Browser</label>
+    <input  autocomplete="off" role="combobox" list="" id="input" name="browsers" placeholder="Select your fav browser">
+  <!-- Its important that you keep list attribute empty to hide the default dropdown icon and the browser's default datalist -->
+
+  <datalist id="browsers" role="listbox">
+    <option *ngFor="let option of options" [value]="option">{{option}}</option>
+  </datalist>
+  </fieldset>
